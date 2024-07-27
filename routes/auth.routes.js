@@ -1,6 +1,6 @@
 const express = require("express");
-const bcrypt = require("bcryptjs"); // Used for encrypting passwords
-const jwt = require("jsonwebtoken"); // Used for creating, signing and verifying JWTs
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 const User = require("./../models/User.model");
 const { isAuthenticated } = require("./../middlewares/jwt.middleware");
 
@@ -11,20 +11,17 @@ const saltRounds = 10;
 router.post("/signup", async (req, res, next) => {
   const { email, password, name } = req.body;
   try {
-    // Check if email, password and name are provided as empty strings
     if (email === "" || password === "" || name === "") {
       res.status(400).json({ message: "Provide email, name, password" });
       return;
     }
 
-    // Verify if the email is matching the required format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
     if (emailRegex.test(email) === false) {
       res.status(400).json({ message: "Provide a valid email address" });
       return;
     }
 
-    // Check if the user with the given email already exists
     const foundUser = await User.findOne({ email: email });
 
     if (foundUser) {
@@ -32,11 +29,9 @@ router.post("/signup", async (req, res, next) => {
       return;
     }
 
-    // Create the salt and encrypt the password asynchornously -  - genSalt() hash()
     const salt = await bcrypt.genSalt(saltRounds);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    // Create the new user document with the email, encrypted password and name
     const createdUser = await User.create({
       email: email,
       password: hashedPassword,
@@ -52,7 +47,7 @@ router.post("/signup", async (req, res, next) => {
     // Return the response with the user data but without the password
     res.status(201).json(user);
   } catch (error) {
-    next(err);
+    res.status(500);
   }
 });
 
@@ -94,16 +89,16 @@ router.post("/login", async (req, res, next) => {
       res.status(400).json({ message: "Unable to authorize the user" });
     }
   } catch (error) {
-    next(err);
+    res.status(500);
   }
 });
 
 // GET /auth/verify - Used to verify the JWT stored on the client is valid
-router.get("/verify", isAuthenticated, (req, res, next) => {
-  // The middleware will verify if the token  exists and if it is valid
+//router.get("/verify", isAuthenticated, (req, res, next) => {
+// The middleware will verify if the token  exists and if it is valid
 
-  // If so we just return back a response with the payload (user data)
-  res.status(200).json(req.payload);
-});
+// If so we just return back a response with the payload (user data)
+//res.status(200).json(req.payload);
+//});
 
 module.exports = router;
