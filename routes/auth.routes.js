@@ -94,11 +94,8 @@ router.post("/login", async (req, res, next) => {
 });
 
 // GET /auth/verify - Used to verify the JWT stored on the client is valid
-//router.get("/verify", isAuthenticated, (req, res, next) => {
-// The middleware will verify if the token  exists and if it is valid
 
-// If so we just return back a response with the payload (user data)
-//res.status(200).json(req.payload);
-//});
-
+router.get("/verify", isAuthenticated, (req, res, next) => {
+  res.status(200).json(req.payload);
+})
 module.exports = router;
