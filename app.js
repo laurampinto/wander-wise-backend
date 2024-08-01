@@ -12,11 +12,6 @@ const PORT = 5005;
 
 const app = express();
 
-mongoose
-  .connect("mongodb://127.0.0.1:27017/wander-wise-backend")
-  .then((x) => console.log("Connect to the database", x.connections[0].name))
-  .catch((err) => console.error("Error connecting to MongoDB", err));
-
 require("./config")(app);
 
 // MIDDLEWARE
@@ -41,11 +36,9 @@ app.use("/auth", authRoutes);
 const attactionsRoutes = require("./routes/attractions.routes");
 app.use("/api/attractions", attactionsRoutes);
 
+const commentsRoutes = require("./routes/comments.routes")
+app.use("/api/comments", commentsRoutes)
+
 require("./error-handling")(app);
 
-// START SERVER
-app.listen(PORT, () => {
-    console.log(`Server listening on port ${PORT}`);
-  });
-  
 module.exports = app;

@@ -16,7 +16,7 @@ const attractionSchema = new Schema({
   typeOf: {
     type: String,
     required: true,
-    enum: ["Park", "Museum", "Landscape"],
+    enum: ["Park", "Museum", "Landscape", "Monument"],
   },
   description: {
     type: String,
@@ -26,6 +26,7 @@ const attractionSchema = new Schema({
     type: String,
     required: true,
   },
+  comments: [{ type: Schema.Types.ObjectId, ref: "Comment"}]
 });
 
 const Attraction = mongoose.model("Attraction", attractionSchema);
