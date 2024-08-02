@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Attraction = require("../models/Attraction.model");
 const Comment = require("../models/Comment.model");
+const { default: mongoose } = require("mongoose");
 
 // Comment Routes
 
