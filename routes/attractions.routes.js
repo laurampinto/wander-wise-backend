@@ -70,7 +70,7 @@ router.put("/:attractionId", (req, res, next) => {
   const { title, city, typeOf, description, imageUrl } = req.body;
 
   Attraction.findByIdAndUpdate(
-    attractionIdId,
+    attractionId,
     {
       title: title,
       city: city,
@@ -97,7 +97,7 @@ router.delete("/:attractionId", (req, res, next) => {
     return;
   }
 
-  Project.findByIdAndDelete(attactionId)
+  Attraction.findByIdAndDelete(attactionId)
     .then((deletedAttraction) => {
       res.status(204).send();
     })
