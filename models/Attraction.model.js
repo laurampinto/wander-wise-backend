@@ -24,7 +24,6 @@ const attractionSchema = new Schema({
   },
   imageUrl: {
     type: String,
-    required: true,
   },
   comments: [{ type: Schema.Types.ObjectId, ref: "Comment"}]
 });
