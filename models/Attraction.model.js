@@ -25,7 +25,7 @@ const attractionSchema = new Schema({
   imageUrl: {
     type: String,
   },
-  comments: [{ type: Schema.Types.ObjectId, ref: "Comment"}]
+  comments: [{ type: Schema.Types.ObjectId, ref: "Comment" }],
 });
 
 const Attraction = mongoose.model("Attraction", attractionSchema);

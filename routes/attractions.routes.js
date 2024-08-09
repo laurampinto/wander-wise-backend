@@ -14,6 +14,7 @@ router.post("/", (req, res, next) => {
     typeOf: req.body.typeOf,
     description: req.body.description,
     imageUrl: req.body.imageUrl,
+    userId: req.body.userId,
     comment: [],
   })
     .then((createdAttraction) => {
@@ -25,6 +26,7 @@ router.post("/", (req, res, next) => {
       next(err);
     });
 });
+
 
 //Route to get all attractions
 router.get("/", (req, res, next) => {
