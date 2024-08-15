@@ -1,8 +1,8 @@
 # Wander Wise
 
-Click here to see the deployed website: 
+Click here to see the deployed website: https://wanderwisebylaura.netlify.app/
 
-Click here to see the deployed API: 
+Click here to see the deployed API: https://wander-wise.adaptable.app
 
 
 # Description
@@ -32,7 +32,7 @@ The community of travelers shares their favorite attractions, complete with deta
 
 # Slides Link:
 
-- 
+- https://docs.google.com/presentation/d/1sIe62hX_Mz941IEk-6xfkZeghri7futf0NhO7d3vK_M/edit?usp=sharing
 
 
 # GitHub repositories:
